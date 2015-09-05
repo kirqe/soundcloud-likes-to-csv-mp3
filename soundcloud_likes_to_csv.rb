@@ -6,7 +6,6 @@ require 'csv'
 CLIENT_ID = "YOUR_CLIENT_ID" # Client ID of created app
 USERNAME = "USERNAME" # your username
 
-
 page_size = 50
 client = SoundCloud.new(:client_id => CLIENT_ID)
 res = []
