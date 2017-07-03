@@ -11,15 +11,11 @@ client = SoundCloud.new(:client_id => CLIENT_ID)
 res = []
 tracks = client.get("/users/#{USERNAME}/favorites", limit: page_size, order: 'created_at', linked_partitioning: 1)
 
-tracks.collection.each do |track|
-  res << [track.title, track.permalink_url]
-end
-
 while tracks.next_href
-  tracks = client.get(tracks.next_href)
   tracks.collection.each do |track|
     res << [track.title, track.permalink_url]
   end
+  tracks = client.get(tracks.next_href)
 end
 
 CSV.open("likes.csv", 'wb') do |csv|
@@ -27,5 +23,3 @@ CSV.open("likes.csv", 'wb') do |csv|
     csv << track
   end
 end
-
-
