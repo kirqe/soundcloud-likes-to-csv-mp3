@@ -6,20 +6,23 @@ require 'csv'
 CLIENT_ID = "YOUR_CLIENT_ID" # Client ID of created app
 USERNAME = "USERNAME" # your username
 
-page_size = 50
-client = SoundCloud.new(:client_id => CLIENT_ID)
+page_size = 200
 res = []
+client = SoundCloud.new(:client_id => CLIENT_ID)
 tracks = client.get("/users/#{USERNAME}/favorites", limit: page_size, order: 'created_at', linked_partitioning: 1)
 
-while tracks.next_href
-  tracks.collection.each do |track|
-    res << [track.title, track.permalink_url]
+loop do
+  if tracks.next_href
+    res += tracks.collection
+    tracks = client.get(tracks.next_href)
+  else
+    res += tracks.collection
+    break
   end
-  tracks = client.get(tracks.next_href)
 end
 
 CSV.open("likes.csv", 'wb') do |csv|
-  res.each do |track|
-    csv << track
+  res.uniq.each do |track|
+    csv << [track.title, track.permalink_url]
   end
 end
