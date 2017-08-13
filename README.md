@@ -11,11 +11,14 @@ gem install whirly # shows progress in terminal
 Run the script with one of the following commands:
 
 ```
-ruby soundcloud_likes_export.rb username # both csv and download likes as mp3
+# both csv and download likes as mp3
+ruby soundcloud_likes_export.rb username
 
-ruby soundcloud_likes_export.rb username -csv # only save likes to csv
+# only save likes to csv
+ruby soundcloud_likes_export.rb username -csv
 
-ruby soundcloud_likes_export.rb username -dl # only download all likes as mp3
+# only download all likes as mp3
+ruby soundcloud_likes_export.rb username -dl
 ```
 
 Files will be saved to the folder from which the script was started.
