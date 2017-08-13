@@ -56,7 +56,7 @@ def download_track(track_id, name)
   Whirly.status = "Downloaded #{name}"
 end
 
-# download all tracks to /tracks folder
+# download all tracks to /likes folder
 def batch_download
   tracks = @res.uniq.map { |track| [ track.id, track.title ] }
   threads = []
