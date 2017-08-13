@@ -2,11 +2,11 @@ Ruby script that allows to export soundcloud likes to csv or download liked trac
 
 ## Instructions
 
-- Install the following gems
-  ```
-  gem install soundcloud
-  gem install whirly # shows progress in terminal
-  ```
+Install the following gems
+```
+gem install soundcloud
+gem install whirly # shows progress in terminal
+```
 
 Run the script with one of the following commands:
 
